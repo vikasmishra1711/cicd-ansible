@@ -1,0 +1,22 @@
+---
+- hosts: webserver
+  become: yes
+
+  tasks:
+
+    - name: Pull latest image
+      shell: docker pull vikas7974344880/cicd-ansible-app:latest
+
+    - name: Stop existing container
+      shell: docker stop cicd-ansible-app || true
+
+    - name: Remove existing container
+      shell: docker rm cicd-ansible-app || true
+
+    - name: Run container
+      shell: |
+        docker run -d \
+        --name cicd-ansible-app \
+        -p 8501:8501 \
+        --restart unless-stopped \
+        vikas7974344880/cicd-ansible-app:latest
