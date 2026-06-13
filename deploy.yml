@@ -5,18 +5,18 @@
   tasks:
 
     - name: Pull latest image
-      shell: docker pull vikas7974344880/cicd-ansible-app:latest
+      shell: docker pull vikas7974344880/cicd-ansible:latest
 
     - name: Stop existing container
-      shell: docker stop cicd-ansible-app || true
+      shell: docker stop cicd-ansible || true
 
     - name: Remove existing container
-      shell: docker rm cicd-ansible-app || true
+      shell: docker rm cicd-ansible || true
 
     - name: Run container
       shell: |
         docker run -d \
-        --name cicd-ansible-app \
+        --name cicd-ansible \
         -p 8501:8501 \
         --restart unless-stopped \
-        vikas7974344880/cicd-ansible-app:latest
+        vikas7974344880/cicd-ansible:latest
